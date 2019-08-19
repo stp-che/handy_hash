@@ -1,7 +1,7 @@
 require 'active_support/all'
 
 class HandyHash < HashWithIndifferentAccess
-  VERSION = '0.1.0'
+  VERSION = '0.1.1'
 
   class ValueMissingError < StandardError; end
 
