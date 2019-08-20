@@ -11,7 +11,8 @@ describe HandyHash do
           secret: "78396nxry837d"
         },
         methods: %w(one two)
-      }
+      },
+      the_false_value: false
     )
   }
 
@@ -19,15 +20,17 @@ describe HandyHash do
     expect(data[:host_name]).to eq "www.myapp.com"
     expect(data["some_lib"][:init_opts]).to eq "flags" => 3465873, "secret" => "78396nxry837d"
     expect(data["some_lib"]["init_opts"][:flags]).to eq 3465873
+    expect(data[:the_false_value]).to be false
     expect(data[:foo]).to be_nil
   end
 
   describe 'getters' do
-    it 'return values from hash' do
+    it 'returns values from hash' do
       expect(data.host_name).to eq "www.myapp.com"
       expect(data.some_lib.init_opts).to eq "flags" => 3465873, "secret" => "78396nxry837d"
       expect(data.some_lib.init_opts[:flags]).to eq 3465873
       expect(data.some_lib.init_opts.secret).to eq "78396nxry837d"
+      expect(data.the_false_value).to be false
     end
 
     it 'does not raise error when digging too deeply' do
@@ -141,7 +144,8 @@ describe HandyHash do
             secret: "78396nxry837d"
           },
           methods: %w(one two)
-        }
+        },
+        the_false_value: false
       )
     end
   end

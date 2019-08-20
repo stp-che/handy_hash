@@ -49,7 +49,11 @@ class HandyHash < HashWithIndifferentAccess
   private
 
   def __fetch_value(key, required: false, default: nil)
-    self[key] || default || (required ? raise(ValueMissingError, "value missing: \"#{key}\"") : HandyHash.Nil)
+    unless self[key].nil?
+      self[key]
+    else
+      default || (required ? raise(ValueMissingError, "value missing: \"#{key}\"") : HandyHash.Nil)
+    end
   end
 
   def __wrap(v)
